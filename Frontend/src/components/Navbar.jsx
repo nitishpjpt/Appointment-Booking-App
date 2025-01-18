@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { RiMenu5Fill } from "react-icons/ri";
 
 const Navbar = () => {
   const navigate = useNavigate();
 
   const [login, setLogin] = useState(false);
+  const [menu,setMenu] = useState(false);
+
 
   return (
     <div>
       <>
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center bg-red-500">
           <div className="w-[80vw] flex items-center font-bold justify-around border-b border-b-gray-400">
             <div className="flex justify-around items-center p-5">
               <img
