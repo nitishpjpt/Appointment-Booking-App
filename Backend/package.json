@@ -1,0 +1,39 @@
+{
+  "name": "hmsbackend",
+  "version": "1.0.0",
+  "description": "Hospital managment system backend",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon -r dotenv/config src/index.js",
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "keywords": [
+    "hostpial",
+    "doctor",
+    "patient"
+  ],
+  "author": "nitish prajapati",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.5.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongodb": "^6.12.0",
+    "mongoose": "^8.9.5",
+    "moongose": "^1.0.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.4.2",
+    "react-router-dom": "^7.1.3"
+  },
+  "devDependencies": {
+    "eslint": "^9.19.0"
+  }
+}
