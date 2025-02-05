@@ -6,9 +6,9 @@ const app = express();
 
 app.use(
   cors({
-    origin: "*", // frontend url
+    origin: "http://localhost:5173", // frontend url
     methods: ["POST", "DELETE", "PUT", "GET"],
-    allowedHeaders: ["Content-Type"],
+    allowedHeaders: ['Content-Type', 'Authorization'], 
     credentials: true,
   })
 );

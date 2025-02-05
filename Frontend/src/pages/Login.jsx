@@ -1,8 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AxiosHandler } from "../config/axios.config.js";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  const data = {
+    email,
+    password,
+  };
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await AxiosHandler.post("/api/v1/auth/login", data);
+      toast.success("Admin login successfully");
+      navigate('/')
+      console.log(response.data);
+    } catch (error) {
+      console.log(error, "user does not register");
+      toast.error(error.response.data.message || "Admin does not login");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
       <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
@@ -43,19 +70,24 @@ const Login = () => {
               </div>
 
               <div className="mx-auto max-w-xs">
-                <input
-                  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                  type="email"
-                  placeholder="Email"
-                />
-                <input
-                  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                  type="password"
-                  placeholder="Password"
-                />
-                <button className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
-                  <span className="ml-3">Login in</span>
-                </button>
+                <form onSubmit={submitHandler}>
+                  <input
+                    className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                    type="email"
+                    placeholder="Email"
+                    required
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <input
+                    className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                    type="password"
+                    placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <button className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                    <span className="ml-3">Login in</span>
+                  </button>
+                </form>
                 <p className="mt-6 text-10px text-gray-600 text-center">
                   Does not have an account then?
                   <Link to="/Register">
