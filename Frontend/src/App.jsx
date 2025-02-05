@@ -1,37 +1,43 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import Doctor from "./pages/Doctor";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import MyAppointments from "./pages/MyAppointments";
-import MyProfile from "./pages/MyProfile";
-import Navbar from "./components/Navbar";
-import Login from "./components/Login";
-import Appointment from "./pages/Appointment";
-import Footer from "./components/Footer";
-import Register from './components/Register'
 
-const App = () => {
+import Sidebar from "./components/common/Sidebar";
+
+import OverviewPage from "./pages/OverviewPage";
+import ProductsPage from "./pages/ProductsPage";
+import UsersPage from "./pages/UsersPage";
+import SalesPage from "./pages/SalesPage";
+import OrdersPage from "./pages/OrdersPage";
+import AnalyticsPage from "./pages/AnalyticsPage";
+import SettingsPage from "./pages/SettingsPage";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+
+function App() {
   return (
-    <div>
-      <>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/register" element={<Register/>}></Route>
-          <Route path="/doctors" element={<Doctor />}></Route> {/*All doctors*/}
-          <Route path="/doctors/:speciality" element={<Doctor />}></Route>
-          <Route path="/About" element={<About />}></Route>
-          <Route path="/Contact" element={<Contact />}></Route>
-          <Route path="/my-appointments" element={<MyAppointments />}></Route>
-          <Route path="/MyProfile" element={<MyProfile />}></Route>
-          <Route path="/appointment/:docId" element={<Appointment/>}></Route>
-        </Routes>
-        <Footer/>
-      </>
-    </div>
+    // <div className="flex h-screen bg-gray-900 text-gray-100 overflow-hidden">
+    //   {/* BG */}
+    //   {/* <div className="fixed inset-0 z-0">
+    //     <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 opacity-80" />
+    //     <div className="absolute inset-0 backdrop-blur-sm" />
+    //   </div> */}
+
+    <>
+      {/* <Sidebar /> */}
+      <Routes>
+        <Route path="/" element={<OverviewPage />} />
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/users" element={<UsersPage />} />
+        <Route path="/sales" element={<SalesPage />} />
+        <Route path="/orders" element={<OrdersPage />} />
+        <Route path="/analytics" element={<AnalyticsPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </>
+
+    // </div>
   );
-};
+}
 
 export default App;
